@@ -29,10 +29,12 @@ head(df)
 str(df)
 rm(df_all)
 png(file="plot3.png")
-with(df, plot(date_time, Sub_metering_1,
-              type="l", ylab = "Energy Sub metering", xlab = ""))
-with(df, lines(date_time, Sub_metering_2, col="red"))
-with(df, lines(date_time, Sub_metering_3, col="blue"))
+with(df, {
+  plot(date_time, Sub_metering_1, type="l", 
+       ylab = "Energy Sub metering", xlab = "")
+  lines(date_time, Sub_metering_2, col="red")
+  lines(date_time, Sub_metering_3, col="blue")
+})
 legend("topright",  lty = 1, col=c("black", "red", "blue"), 
        legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 dev.off()
