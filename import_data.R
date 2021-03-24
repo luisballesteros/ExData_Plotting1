@@ -18,7 +18,11 @@ unzip(zipfile = "./data/household_power_consumption.zip", exdir = "./data")
 df_all <- fread("./data/household_power_consumption.txt", 
                 na.strings = c("?",NA))
 df <- subset(df_all, Date == "1/2/2007" | Date == "2/2/2007")
+# Creates variable "date_time" as a union variable of "Date" and "Time" and
+# converts it to date/time format.
 # Transform "Date" to date with "lubridate" library
+df$date_time <- paste(df$Date, df$Time)
+df$date_time <- dmy_hms(df$date_time)
 df$Date <- dmy(df$Date)
 # Check "Data Frame" and delete data source from memory 
 head(df)
